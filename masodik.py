@@ -23,7 +23,7 @@ def main():
                           }
             lines.append(categories)
         choosen = getting_aspect()
-    pprint(sorted(lines, key=lambda shoe: choosen))
+    pprint(sorted(lines, key=lambda shoes: choosen))
 
 
 main()
