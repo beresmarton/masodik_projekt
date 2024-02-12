@@ -7,7 +7,7 @@ def getting_aspect():
     for number in range(1, 6):
         print(f'{number} - {aspects[number-1]}')
     choice = int(input('Válasszon egyet a fenti leheőségek közül!(Adja meg a sorszámát)! '))
-    return choice
+    return aspects[choice-1]
 
 
 def main():
@@ -15,15 +15,16 @@ def main():
         sourcefile.readline()
         lines = []
         for line in sourcefile:
-            categories = {'title': line.strip().split(',')[0],
-                          'color': line.strip().split(',')[1],
-                          'full_price': line.strip().split(',')[2],
-                          'current_price': line.strip().split(',')[3],
-                          'publish_date': line.strip().split(',')[4]
+            data = line.strip().split(',')
+            categories = {'title': data[0],
+                          'color': data[1],
+                          'full_price': float(data[2]),
+                          'current_price': float(data[3]),
+                          'publish_date': data[4]
                           }
             lines.append(categories)
         choosen = getting_aspect()
-    pprint(sorted(lines, key=lambda shoes: choosen))
+    pprint(sorted(lines, key=lambda shoes: shoes[choosen]))
 
 
 main()
